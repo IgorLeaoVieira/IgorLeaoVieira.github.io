@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Igor • Vlog Pessoal</title>
+  <meta name="description" content="Vlog pessoal de Igor — Tecnologia, Infraestrutura e vida." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ============ CONTRA CAPA ============ -->
+  <div id="cover" class="cover">
+    <div class="cover-bg"></div>
+    <div class="cover-content">
+      <p class="cover-eyebrow">Bem-vindo ao Vlog do</p>
+      <h1 class="cover-title">
+        <span>I</span><span>G</span><span>O</span><span>R</span>
+      </h1>
+      <p class="cover-sub">Tecnologia · Viagens · Games · Futebol</p>
+      <button id="enterBtn" class="cover-btn" aria-label="Entrar no site">
+        <span>Toque para entrar</span>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+      <p class="cover-hint">Toque em qualquer lugar ou pressione <kbd>OK</kbd></p>
+    </div>
+    <div class="cover-glow"></div>
+  </div>
+
+  <!-- ============ SITE PRINCIPAL ============ -->
+  <div id="site" class="site">
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar">
+      <a href="#inicio" class="logo">igor<span>.log</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio" class="nav-link active">Início</a>
+        <a href="#hobbies" class="nav-link">Hobbies</a>
+        <a href="#profissional" class="nav-link">Carreira</a>
+        <a href="#contato" class="nav-link">Contato</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div class="hero-bg-shapes">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+      </div>
+      <div class="hero-container">
+        <div class="hero-text">
+          <span class="badge">👋 Olá, seja bem-vindo</span>
+          <h1 class="hero-title">
+            Eu sou <span class="gradient-text">Igor</span>,<br />
+            futuro <span class="underline">Analista de Infraestrutura</span>
+          </h1>
+          <p class="hero-desc">
+            Tenho 24 anos e estou me formando em Tecnologia. Meu maior objetivo?
+            <strong>Morar e trabalhar fora do Brasil</strong> — na Espanha ou nos Estados Unidos —
+            com uma pós-graduação em Infraestrutura de TI.
+          </p>
+          <div class="hero-cta">
+            <a href="#hobbies" class="btn btn-primary">Conheça meu mundo →</a>
+            <a href="#contato" class="btn btn-ghost">Fale comigo</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>24</strong><span>anos</span></div>
+            <div><strong>5+</strong><span>hobbies</span></div>
+            <div><strong>🌍</strong><span>sonhos globais</span></div>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <div class="photo-frame">
+           <img src="img/img3.jpg" alt="Igor" />
+          </div>
+          <div class="floating-card card-1">💻 Infraestrutura</div>
+          <div class="floating-card card-2">⚽ Futebol</div>
+          <div class="floating-card card-3">🎮 Games FPS & RPG</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOBBIES -->
+    <section id="hobbies" class="section">
+      <div class="section-header">
+        <span class="section-tag">O que eu amo fazer</span>
+        <h2 class="section-title">Meus <span class="gradient-text">Hobbies</span></h2>
+        <p class="section-sub">Quando não estou estudando tecnologia, você me encontra aqui 👇</p>
+      </div>
+      <div class="cards-grid">
+        <article class="card">
+          <div class="card-icon">⚽</div>
+          <h3>Futebol</h3>
+          <p>Jogo com os amigos sempre que posso — é onde recarrego as energias.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">✈️</div>
+          <h3>Viajar</h3>
+          <p>Conhecer novos lugares, culturas e pessoas. Meu sonho é conhecer a Espanha e os EUA pessoalmente.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🎮</div>
+          <h3>Games FPS & RPG</h3>
+          <p>nos fins de seman, competitividade nos FPS e imersão nos RPG.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🖥️</div>
+          <h3>Tech & Setup</h3>
+          <p>Montar, configurar e otimizar — aprender sobre hardware e infraestrutura.</p>
+        </article>
+      </div>
+    </section>
+
+        <!-- GALERIA -->
+    <section class="section gallery-section">
+      <div class="section-header">
+        <span class="section-tag">Um pouco de mim</span>
+        <h2 class="section-title">Momentos <span class="gradient-text">em imagens</span></h2>
+      </div>
+      <div class="gallery">
+        <div class="gallery-item"><img src="img/img1.jpg" alt="Igor 1" /></div>
+        <div class="gallery-item"><img src="img/img2.jpg" alt="Igor 2" /></div>
+        <div class="gallery-item"><img src="img/img3.jpg" alt="Igor 3" /></div>
+      </div>
+      <p class="gallery-hint">💡 Minha trajetória em imagens</p>
+    </section>
+
+    <!-- PROFISSIONAL -->
+    <section id="profissional" class="section prof-section">
+      <div class="section-header">
+        <span class="section-tag">Carreira & Objetivos</span>
+        <h2 class="section-title">Área <span class="gradient-text">Profissional</span></h2>
+        <p class="section-sub">Tecnólogo em formação,infraestrutura e com planos internacionais.</p>
+      </div>
+      <div class="prof-grid">
+        <div class="prof-card">
+          <div class="prof-icon">🎓</div>
+          <h3>Formação Atual</h3>
+          <p>Cursando Tecnólogo em TI, com foco em infraestrutura, redes e ambientes corporativos.</p>
+        </div>
+        <div class="prof-card">
+          <div class="prof-icon">🚀</div>
+          <h3>Objetivo</h3>
+          <p>Fazer pós-graduação em Infraestrutura de TI e atuar como Analista de Infraestrutura no exterior.</p>
+        </div>
+        <div class="prof-card">
+          <div class="prof-icon">🌍</div>
+          <h3>Destino</h3>
+          <p>Espanha 🇪🇸 ou Estados Unidos 🇺🇸 — onde quero construir minha carreira e minha vida.</p>
+        </div>
+        <div class="prof-card">
+          <div class="prof-icon">🧠</div>
+          <h3>Skills em foco</h3>
+          <p>Redes, Linux, cloud, monitoramento, desenvolvimento em sistemas operacionais, segurança e automação.</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-content">
+            <h4>Agora · 2025-2027</h4>
+            <p>Concluindo o Tecnólogo em TI e aprofundando conhecimentos em infraestrutura.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-content">
+            <h4>Próximo passo</h4>
+            <p>Pós-graduação em Infraestrutura — com foco em mercado internacional.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-content">
+            <h4>O sonho</h4>
+            <p>Viver e trabalhar na Espanha ou nos EUA como Analista de Infraestrutura.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="section contact-section">
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <span class="section-tag">Vamos conversar</span>
+          <h2 class="section-title">Me manda <span class="gradient-text">uma mensagem</span></h2>
+          <p class="section-sub">
+            Quer trocar uma ideia sobre tecnologia, oportunidades ou só mandar um "oi"?
+            Respondo tudo pelo e-mail!
+          </p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-icon">✉️</span>
+              <a href="mailto:igorleaovieira66@gmail.com">igorleaovieira66@gmail.com</a>
+            </li>
+            <li>,
+              <span class="contact-icon">💻</span>
+              <a href="https://github.com/IgorLeaoVieira" target="_blank" rel="noopener">github.com/IgorLeaoVieira</a>
+            </li>
+          </ul>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="field">
+            <label for="name">Seu nome</label>
+            <input type="text" id="name" name="name" placeholder="Como se chama?" required />
+          </div>
+          <div class="field">
+            <label for="email">Seu e-mail</label>
+            <input type="email" id="email" name="email" placeholder="voce@email.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            Enviar mensagem ✉️
+          </button>
+          <p class="form-feedback" id="formFeedback"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© <span id="year"></span> Igor · Feito com 💻 e ☕</p>
+      <div class="footer-links">
+        <a href="https://github.com/IgorLeaoVieira" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:igorleaovieira66@gmail.com">E-mail</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
