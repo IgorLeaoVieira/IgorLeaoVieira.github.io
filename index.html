@@ -124,13 +124,54 @@
             em outro país, conhecendo novas culturas e pessoas.
           </p>
         </div>
-        <div class="sobre-stats">
-          <div class="sobre-stat"><strong>🎯</strong><span>Foco: Infraestrutura</span></div>
-          <div class="sobre-stat"><strong>🌍</strong><span>Meta: Morar fora</span></div>
-          <div class="sobre-stat"><strong>📚</strong><span>2º semestre</span></div>
-          <div class="sobre-stat"><strong>🛡️</strong><span>Segurança de Redes</span></div>
+               <div class="sobre-stats">
+          <!-- QUADROS COM DATA-TARGET PARA ABRIR O MODAL -->
+          <div class="sobre-stat" data-target="foco" style="cursor: pointer;">
+            <strong>🎯</strong><span>Foco: Infraestrutura</span>
+          </div>
+          <div class="sobre-stat" data-target="meta" style="cursor: pointer;">
+            <strong>🌍</strong><span>Meta: Morar fora</span>
+          </div>
+          <div class="sobre-stat" data-target="semestre" style="cursor: pointer;">
+            <strong>📚</strong><span>2º semestre</span>
+          </div>
+          <div class="sobre-stat" data-target="seguranca" style="cursor: pointer;">
+            <strong>🛡️</strong><span>Segurança de Redes</span>
+          </div>
+          
+          <!-- QUADRO DA KIARA (NÃO MEXER) -->
+          <div class="sobre-stat kiara-sobre-stat">
+            <span class="kiara-label">Meu mascote</span>
+            <div class="kiara-mini-wrapper" id="kiaraBtnSobre">
+              <svg viewBox="0 0 200 200" class="kiara-mini-svg">
+                <!-- ... o SVG da Kiara continua igual ... -->
+                <g class="kiara-rabo">
+                  <path d="M140 150 Q180 140 170 100 Q160 120 140 130" fill="#a8a29e" stroke="#57534e" stroke-width="3"/>
+                </g>
+                <ellipse cx="100" cy="140" rx="45" ry="40" fill="#e7e5e4" stroke="#57534e" stroke-width="4"/>
+                <g class="kiara-pernas">
+                  <ellipse cx="75" cy="175" rx="15" ry="10" fill="#d6d3d1" stroke="#57534e" stroke-width="4"/>
+                  <ellipse cx="125" cy="175" rx="15" ry="10" fill="#d6d3d1" stroke="#57534e" stroke-width="4"/>
+                </g>
+                <ellipse cx="100" cy="90" rx="50" ry="45" fill="#e7e5e4" stroke="#57534e" stroke-width="4"/>
+                <ellipse cx="55" cy="75" rx="15" ry="25" fill="#a8a29e" stroke="#57534e" stroke-width="4" transform="rotate(-20 55 75)"/>
+                <ellipse cx="145" cy="75" rx="15" ry="25" fill="#a8a29e" stroke="#57534e" stroke-width="4" transform="rotate(20 145 75)"/>
+                <path d="M85 45 L75 35 L85 30 Z" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
+                <path d="M85 45 L95 35 L85 30 Z" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
+                <circle cx="85" cy="37" r="4" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
+                <g class="kiara-rosto">
+                  <circle cx="80" cy="85" r="6" fill="#292524"/>
+                  <circle cx="120" cy="85" r="6" fill="#292524"/>
+                  <ellipse cx="100" cy="105" rx="12" ry="8" fill="#d6d3d1"/>
+                  <path d="M95 100 Q100 105 105 100" stroke="#292524" stroke-width="2" fill="none"/>
+                  <path d="M85 110 Q100 130 115 110 Q100 120 85 110 Z" fill="#ef4444" stroke="#292524" stroke-width="2"/>
+                  <path d="M95 118 Q100 125 105 118 Z" fill="#f43f5e"/>
+                </g>
+              </svg>
+            </div>
+            <span class="kiara-nome">Alinah</span>
+          </div>
         </div>
-      </div>
     </section>
 
     <!-- HOBBIES -->
@@ -379,6 +420,65 @@
         <a href="mailto:igorleaovieira66@gmail.com">E-mail</a>
       </div>
     </footer>
+  </div>
+
+  <!-- ===== MASCOTE KIARA FLUTUANTE & MENU ===== -->
+  <div id="kiara-container" class="kiara-container">
+    <!-- Menu de Opções (Abre ao lado esquerdo da Kiara) -->
+    <div id="kiara-menu" class="kiara-menu">
+      <div class="menu-opcao" data-target="historia">📖 A História da Kiara</div>
+      <div class="menu-opcao" data-target="gostos">🍖 O que ela ama</div>
+      <div class="menu-opcao" data-target="travessuras">😈 Travessuras</div>
+    </div>
+
+    <!-- Botão da Kiara Animada -->
+    <div class="kiara-wrapper" id="kiaraBtn" title="Clique na Kiara!">
+      <div class="kiara-svg-box">
+        <svg viewBox="0 0 200 200" class="kiara-svg">
+          <g class="kiara-rabo">
+            <path d="M140 150 Q180 140 170 100 Q160 120 140 130" fill="#a8a29e" stroke="#57534e" stroke-width="3"/>
+          </g>
+          <ellipse cx="100" cy="140" rx="45" ry="40" fill="#e7e5e4" stroke="#57534e" stroke-width="4"/>
+          <g class="kiara-pernas">
+            <ellipse cx="75" cy="175" rx="15" ry="10" fill="#d6d3d1" stroke="#57534e" stroke-width="4"/>
+            <ellipse cx="125" cy="175" rx="15" ry="10" fill="#d6d3d1" stroke="#57534e" stroke-width="4"/>
+          </g>
+          <ellipse cx="100" cy="90" rx="50" ry="45" fill="#e7e5e4" stroke="#57534e" stroke-width="4"/>
+          <ellipse cx="55" cy="75" rx="15" ry="25" fill="#a8a29e" stroke="#57534e" stroke-width="4" transform="rotate(-20 55 75)"/>
+          <ellipse cx="145" cy="75" rx="15" ry="25" fill="#a8a29e" stroke="#57534e" stroke-width="4" transform="rotate(20 145 75)"/>
+          <path d="M85 45 L75 35 L85 30 Z" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
+          <path d="M85 45 L95 35 L85 30 Z" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
+          <circle cx="85" cy="37" r="4" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
+          <g class="kiara-rosto">
+            <circle cx="80" cy="85" r="6" fill="#292524"/>
+            <circle cx="120" cy="85" r="6" fill="#292524"/>
+            <ellipse cx="100" cy="105" rx="12" ry="8" fill="#d6d3d1"/>
+            <path d="M95 100 Q100 105 105 100" stroke="#292524" stroke-width="2" fill="none"/>
+            <path d="M85 110 Q100 130 115 110 Q100 120 85 110 Z" fill="#ef4444" stroke="#292524" stroke-width="2"/>
+            <path d="M95 118 Q100 125 105 118 Z" fill="#f43f5e"/>
+          </g>
+        </svg>
+      </div>
+      <div class="kiara-balao">Au Au! Clica em mim 🐾</div>
+    </div>
+  </div>
+
+  <!-- ===== O LIVRINHO (Modal de Fotos) ===== -->
+  <div id="livro-overlay" class="livro-overlay"></div>
+  <div id="kiara-livro" class="kiara-livro">
+    <button class="fechar-livro" id="fecharLivro">✕ Fechar Livro</button>
+    <div class="livro-content" id="livroContent">
+      <!-- Preenchido pelo JS -->
+    </div>
+  </div>
+
+  <!-- ===== MODAL DE DETALHES DOS QUADROS ===== -->
+  <div id="detalhe-overlay" class="detalhe-overlay"></div>
+  <div id="detalhe-modal" class="detalhe-modal">
+    <button class="fechar-detalhe" id="fecharDetalhe">✕ Fechar</button>
+    <div id="detalheContent">
+      <!-- O JS preenche aqui -->
+    </div>
   </div>
 
   <script src="js/script.js"></script>
