@@ -340,3 +340,261 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if (e.key === 'Escape') fecharDetalheModal();
   });
 })();
+
+/* ============================================
+   LÓGICA DO JOGO DA FORCA
+============================================ */
+const bancoPalavras = {
+  objetos: [
+    { palavra: 'COMPUTADOR', dica: 'Máquina usada para processar dados e navegar na internet.' },
+    { palavra: 'TECLADO', dica: 'Dispositivo com teclas para digitar no computador.' },
+    { palavra: 'MONITOR', dica: 'Tela que exibe as imagens do computador.' },
+    { palavra: 'CADEIRA', dica: 'Móvel usado para sentar.' },
+    { palavra: 'ABAJUR', dica: 'Objeto usado para iluminar um ambiente.' },
+    { palavra: 'GELADEIRA', dica: 'Eletrodoméstico usado para conservar alimentos.' },
+    { palavra: 'VENTILADOR', dica: 'Aparelho que move o ar para refrescar.' },
+    { palavra: 'BICICLETA', dica: 'Veículo de duas rodas movido a pedal.' },
+    { palavra: 'TELEFONE', dica: 'Aparelho usado para comunicação à distância.' },
+    { palavra: 'CARTEIRA', dica: 'Objeto usado para guardar dinheiro e documentos.' }
+  ],
+  corpo: [
+    { palavra: 'CABELO', dica: 'Fica no topo da cabeça.' },
+    { palavra: 'JOELHO', dica: 'Articulação do meio da perna.' },
+    { palavra: 'OMBRO', dica: 'Parte do corpo que liga o braço ao tronco.' },
+    { palavra: 'COTOVELO', dica: 'Articulação do meio do braço.' },
+    { palavra: 'TORNOZELO', dica: 'Articulação que liga a perna ao pé.' },
+    { palavra: 'PULMAO', dica: 'Órgão responsável pela respiração.' },
+    { palavra: 'ESTOMAGO', dica: 'Órgão que digere os alimentos.' },
+    { palavra: 'INTESTINO', dica: 'Órgão que absorve os nutrientes da comida.' },
+    { palavra: 'MANDIBULA', dica: 'Osso da parte inferior da boca.' },
+    { palavra: 'CLAVICULA', dica: 'Osso que liga o ombro ao esterno.' }
+  ],
+  frutas: [
+    { palavra: 'ABACAXI', dica: 'Fruta com coroa e casca espinhosa.' },
+    { palavra: 'BANANA', dica: 'Fruta amarela e alongada.' },
+    { palavra: 'LARANJA', dica: 'Fruta cítrica de cor laranja.' },
+    { palavra: 'MELANCIA', dica: 'Fruta grande, verde por fora e vermelha por dentro.' },
+    { palavra: 'MORANGO', dica: 'Fruta pequena, vermelha e com sementes na casca.' },
+    { palavra: 'GOIABA', dica: 'Fruta comum no Brasil, verde por fora e rosa por dentro.' },
+    { palavra: 'PITANGA', dica: 'Fruta pequena, vermelha e comestível.' },
+    { palavra: 'MARACUJA', dica: 'Fruta azeda usada em sucos e doces.' },
+    { palavra: 'JABUTICABA', dica: 'Fruta roxa que nasce no tronco da árvore.' },
+    { palavra: 'CARAMBOLA', dica: 'Fruta amarela em forma de estrela.' }
+  ]
+};
+
+let palavraAtual = '';
+let dicaAtual = '';
+let temaAtual = '';
+let letrasAcertadas = [];
+let erros = 0;
+const maxErros = 4;
+
+const elTemas = document.getElementById('forca-temas');
+const elJogo = document.getElementById('forca-jogo');
+const elPalavra = document.getElementById('forca-palavra');
+const elTeclado = document.getElementById('forca-teclado');
+const elStatus = document.getElementById('forca-status');
+const elAcoes = document.getElementById('forca-acoes');
+const elDica = document.getElementById('forca-dica');
+const elConsoleIniciar = document.getElementById('consoleIniciar');
+const elBtnAbrirPalavra = document.getElementById('btnAbrirPalavra');
+const elInputContainer = document.getElementById('inputPalavraContainer');
+const elInputPalavra = document.getElementById('inputPalavra');
+
+const partesBoneco = [
+  document.getElementById('cabeca'),
+  document.getElementById('corpo'),
+  document.getElementById('braco-esq'),
+  document.getElementById('braco-dir')
+];
+
+// 1. Função para mostrar os temas ao clicar no console
+function mostrarTemas() {
+  // Se o jogo estiver visível, não faz nada (evita bug)
+  if (elJogo.style.display === 'flex') return;
+  
+  elConsoleIniciar.style.display = 'none'; // Esconde o console
+  elTemas.style.display = 'flex'; // Mostra os temas
+  elJogo.style.display = 'none';
+}
+
+// 2. Função para voltar ao início (console)
+function voltarInicio() {
+  elTemas.style.display = 'none';
+  elJogo.style.display = 'none';
+  elConsoleIniciar.style.display = 'flex';
+  
+  // Limpa status
+  elStatus.textContent = '';
+  elStatus.className = 'forca-status';
+  elAcoes.style.display = 'none';
+  elInputContainer.style.display = 'none';
+  elBtnAbrirPalavra.style.display = 'block';
+}
+
+// 3. Iniciar o jogo com o tema escolhido
+function iniciarForca(tema) {
+  temaAtual = tema;
+  const lista = bancoPalavras[tema];
+  const sorteada = lista[Math.floor(Math.random() * lista.length)];
+  
+  palavraAtual = sorteada.palavra;
+  dicaAtual = sorteada.dica;
+  
+  letrasAcertadas = [];
+  erros = 0;
+
+  elTemas.style.display = 'none';
+  elJogo.style.display = 'flex';
+  elStatus.textContent = '';
+  elStatus.className = 'forca-status';
+  elAcoes.style.display = 'none';
+  elInputContainer.style.display = 'none';
+  elBtnAbrirPalavra.style.display = 'block';
+  elDica.textContent = `Dica: ${dicaAtual}`;
+
+  partesBoneco.forEach(parte => parte.style.display = 'none');
+
+  // Cria os traços
+  elPalavra.innerHTML = '';
+  for (let i = 0; i < palavraAtual.length; i++) {
+    const slot = document.createElement('div');
+    slot.classList.add('letra-slot');
+    slot.id = `letra-${i}`;
+    elPalavra.appendChild(slot);
+  }
+
+  criarTeclado();
+}
+
+// 4. Cria o teclado de letras
+function criarTeclado() {
+  elTeclado.innerHTML = '';
+  const alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  
+  alfabeto.forEach(letra => {
+    const btn = document.createElement('button');
+    btn.classList.add('btn-letra');
+    btn.textContent = letra;
+    btn.onclick = () => tentarLetra(letra, btn);
+    elTeclado.appendChild(btn);
+  });
+}
+
+// 5. Lógica de tentar uma letra
+function tentarLetra(letra, btn) {
+  btn.disabled = true;
+
+  if (palavraAtual.includes(letra)) {
+    btn.classList.add('acertou');
+    letrasAcertadas.push(letra);
+    
+    for (let i = 0; i < palavraAtual.length; i++) {
+      if (palavraAtual[i] === letra) {
+        const slot = document.getElementById(`letra-${i}`);
+        slot.textContent = letra;
+      }
+    }
+    verificarVitoria();
+  } else {
+    btn.classList.add('errou');
+    erros++;
+    
+    if (erros <= maxErros) {
+      partesBoneco[erros - 1].style.display = 'block';
+    }
+
+    if (erros >= maxErros) {
+      perderJogo();
+    }
+  }
+}
+
+// 6. Abrir campo de palavra completa
+function abrirInputPalavra() {
+  elBtnAbrirPalavra.style.display = 'none';
+  elInputContainer.style.display = 'block';
+  elInputPalavra.focus();
+}
+
+// 7. Verificar a palavra completa (Game Over se errar)
+function verificarPalavraCompleta() {
+  const tentativa = elInputPalavra.value.toUpperCase().trim();
+  
+  if (!tentativa) return;
+
+  if (tentativa === palavraAtual) {
+    // Acertou a palavra completa!
+    // Revela todas as letras
+    for (let i = 0; i < palavraAtual.length; i++) {
+      const slot = document.getElementById(`letra-${i}`);
+      slot.textContent = palavraAtual[i];
+    }
+    elStatus.textContent = '🎉 VITÓRIA! Você acertou a palavra completa!';
+    elStatus.className = 'forca-status vitoria';
+    elAcoes.style.display = 'flex';
+    desabilitarTeclado();
+    elInputContainer.style.display = 'none';
+  } else {
+    // Errou a palavra completa -> Game Over
+    perderJogo();
+  }
+}
+
+// 8. Verificar se o jogador venceu pelas letras
+function verificarVitoria() {
+  let ganhou = true;
+  for (let i = 0; i < palavraAtual.length; i++) {
+    if (!letrasAcertadas.includes(palavraAtual[i])) {
+      ganhou = false;
+      break;
+    }
+  }
+
+  if (ganhou) {
+    elStatus.textContent = '🎉 VITÓRIA! Você acertou a palavra!';
+    elStatus.className = 'forca-status vitoria';
+    elAcoes.style.display = 'flex';
+    desabilitarTeclado();
+    elInputContainer.style.display = 'none';
+  }
+}
+
+// 9. Perder o jogo
+function perderJogo() {
+  elStatus.textContent = `💀 GAME OVER! A palavra era: ${palavraAtual}`;
+  elStatus.className = 'forca-status derrota';
+  elAcoes.style.display = 'flex';
+  desabilitarTeclado();
+  elInputContainer.style.display = 'none';
+
+  for (let i = 0; i < palavraAtual.length; i++) {
+    const slot = document.getElementById(`letra-${i}`);
+    slot.textContent = palavraAtual[i];
+    slot.style.color = '#ef4444';
+  }
+}
+
+// 10. Desabilita o teclado
+function desabilitarTeclado() {
+  const botoes = elTeclado.querySelectorAll('button');
+  botoes.forEach(btn => btn.disabled = true);
+}
+
+// 11. Reiniciar o jogo (mesmo tema)
+function reiniciarForca() {
+  iniciarForca(temaAtual);
+}
+
+// 12. Voltar ao menu de temas
+function voltarTemas() {
+  elJogo.style.display = 'none';
+  elTemas.style.display = 'flex';
+  elConsoleIniciar.style.display = 'none'; // Continua escondido
+  elStatus.textContent = '';
+  elDica.textContent = '';
+  elAcoes.style.display = 'none';
+  elInputContainer.style.display = 'none';
+  elBtnAbrirPalavra.style.display = 'block';
+}
