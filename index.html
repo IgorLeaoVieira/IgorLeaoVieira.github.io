@@ -280,6 +280,7 @@
         <h2 class="section-title">Meus <span class="gradient-text">Projetos</span></h2>
         <p class="section-sub">Projetos acadêmicos e pessoais que estou desenvolvendo</p>
       </div>
+
       <div class="projetos-grid">
         <div class="projeto-card">
           <div class="projeto-icon">🌐</div>
@@ -299,8 +300,83 @@
           <p>Laboratórios de configuração de redes, protocolos (TCP/IP, DNS, DHCP) e primeiros passos em firewall e VPN.</p>
           <div class="projeto-tags"><span>Redes</span><span>TCP/IP</span><span>Firewall</span></div>
         </div>
-      </div>
-    </section>
+      </div> <!-- FIM DE .projetos-grid (fora do jogo!) -->
+
+      <!-- JOGO DA FORCA COM CONSOLE RETRÔ (bloco irmão de .projetos-grid) -->
+      <div class="jogo-forca-container" id="jogoForca">
+        <div class="forca-header">
+          <h3 class="forca-title">Jogo da Forca <span class="gradient-text">Tech</span></h3>
+          <p class="forca-sub">Escolha um tema e adivinhe a palavra. Você tem no máximo 4 erros!</p>
+        </div>
+
+        <div class="forca-layout">
+          <!-- COLUNA ESQUERDA: CONSOLE -->
+          <div class="console-retro" id="consoleIniciar" onclick="mostrarTemas()" style="cursor: pointer;">
+            <p class="console-frase">Reviva o game do passado</p>
+
+            <svg viewBox="0 0 200 140" class="console-svg">
+              <rect x="10" y="20" width="180" height="100" rx="15" fill="#111" stroke="#EAF4FF" stroke-width="3"/>
+              <rect x="30" y="30" width="140" height="15" rx="5" fill="#EAF4FF" opacity="0.9"/>
+              <rect x="40" y="60" width="12" height="40" rx="3" fill="#EAF4FF"/>
+              <rect x="26" y="74" width="40" height="12" rx="3" fill="#EAF4FF"/>
+              <circle cx="145" cy="70" r="10" fill="#EAF4FF"/>
+              <circle cx="165" cy="85" r="10" fill="#EAF4FF"/>
+              <rect x="75" y="100" width="15" height="6" rx="3" fill="#EAF4FF"/>
+              <rect x="110" y="100" width="15" height="6" rx="3" fill="#EAF4FF"/>
+              <text x="100" y="120" font-family="'Space Grotesk', sans-serif" font-size="10" fill="#EAF4FF" text-anchor="middle" font-weight="bold">INICIAR</text>
+            </svg>
+          </div>
+
+          <!-- COLUNA DIREITA: ÁREA DO JOGO -->
+          <div class="forca-area-jogo">
+            <div id="forca-temas" class="forca-temas" style="display: none;">
+              <button class="btn btn-primary" onclick="iniciarForca('objetos')">Objetos</button>
+              <button class="btn btn-primary" onclick="iniciarForca('corpo')">Corpo Humano</button>
+              <button class="btn btn-primary" onclick="iniciarForca('frutas')">Frutas</button>
+              <button class="btn btn-ghost" onclick="voltarInicio()" style="margin-top: 1rem; grid-column: span 3;">Voltar ao Início</button>
+            </div>
+
+            <div id="forca-jogo" class="forca-jogo" style="display: none;">
+              <div class="forca-desenho">
+                <svg viewBox="0 0 200 250" class="forca-svg">
+                  <line x1="20" y1="230" x2="120" y2="230" stroke="#EAF4FF" stroke-width="6" stroke-linecap="round"/>
+                  <line x1="70" y1="230" x2="70" y2="20" stroke="#EAF4FF" stroke-width="6" stroke-linecap="round"/>
+                  <line x1="70" y1="20" x2="150" y2="20" stroke="#EAF4FF" stroke-width="6" stroke-linecap="round"/>
+                  <line x1="150" y1="20" x2="150" y2="50" stroke="#EAF4FF" stroke-width="6" stroke-linecap="round"/>
+                  <g id="boneco" stroke="var(--accent-2)" stroke-width="6" stroke-linecap="round" fill="none">
+                    <circle id="cabeca" cx="150" cy="70" r="15" style="display:none;"/>
+                    <line id="corpo" x1="150" y1="85" x2="150" y2="140" style="display:none;"/>
+                    <line id="braco-esq" x1="150" y1="100" x2="130" y2="120" style="display:none;"/>
+                    <line id="braco-dir" x1="150" y1="100" x2="170" y2="120" style="display:none;"/>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="forca-palavra-area">
+                <div id="forca-dica" class="forca-dica"></div>
+
+                <div class="forca-input-area">
+                  <button id="btnAbrirPalavra" class="btn btn-ghost" onclick="abrirInputPalavra()" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Tentar a palavra completa</button>
+                  <div id="inputPalavraContainer" style="display: none; margin-top: 10px; width: 100%; max-width: 300px;">
+                    <input type="text" id="inputPalavra" class="form-input" placeholder="Digite a palavra..." autocomplete="off" style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--bg); color: var(--text);">
+                    <button class="btn btn-primary" onclick="verificarPalavraCompleta()" style="margin-top: 5px; width: 100%;">Verificar</button>
+                  </div>
+                </div>
+
+                <div id="forca-palavra" class="forca-palavra"></div>
+                <div id="forca-teclado" class="forca-teclado"></div>
+                <div id="forca-status" class="forca-status"></div>
+
+                <div id="forca-acoes" class="forca-acoes" style="display: none;">
+                  <button class="btn btn-primary" onclick="reiniciarForca()">Jogar Novamente</button>
+                  <button class="btn btn-ghost" onclick="voltarTemas()">Voltar ao Menu de Temas</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- FIM DE #jogoForca -->
+    </section> <!-- FIM DE #projetos -->
 
     <!-- GALERIA -->
     <section class="section gallery-section">
@@ -371,46 +447,51 @@
     </section>
 
     <!-- CONTATO -->
-    <section id="contato" class="section contact-section">
-      <div class="contact-wrap">
-        <div class="contact-info">
-          <span class="section-tag">Vamos conversar</span>
-          <h2 class="section-title">Me manda <span class="gradient-text">uma mensagem</span></h2>
-          <p class="section-sub">
-            Quer trocar uma ideia sobre tecnologia, oportunidades ou só mandar um "oi"?
-            Respondo tudo pelo e-mail!
-          </p>
-          <ul class="contact-list">
-            <li>
-              <span class="contact-icon">✉️</span>
-              <a href="mailto:igorleaovieira66@gmail.com">igorleaovieira66@gmail.com</a>
-            </li>
-            <li>
-              <span class="contact-icon">💻</span>
-              <a href="https://github.com/IgorLeaoVieira" target="_blank" rel="noopener">github.com/IgorLeaoVieira</a>
-            </li>
-          </ul>
-        </div>
-        <form class="contact-form" id="contactForm">
-          <div class="field">
-            <label for="name">Seu nome</label>
-            <input type="text" id="name" name="name" placeholder="Como se chama?" required />
-          </div>
-          <div class="field">
-            <label for="email">Seu e-mail</label>
-            <input type="email" id="email" name="email" placeholder="voce@email.com" required />
-          </div>
-          <div class="field">
-            <label for="message">Mensagem</label>
-            <textarea id="message" name="message" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">
-            Enviar mensagem ✉️
-          </button>
-          <p class="form-feedback" id="formFeedback"></p>
-        </form>
+<section id="contato" class="section contact-section">
+  <div class="section-header">
+    <span class="section-tag">Vamos conversar</span>
+    <h2 class="section-title">Me manda <span class="gradient-text">uma mensagem</span></h2>
+    <p class="section-sub">
+      Quer trocar uma ideia sobre tecnologia, oportunidades ou só mandar um "oi"? Respondo tudo pelo e-mail!
+    </p>
+  </div>
+
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h3>Redes e Contato</h3>
+      <p>Fique à vontade para me chamar em qualquer uma dessas plataformas. Respondo o mais rápido possível!</p>
+      <ul class="contact-list">
+        <li>
+          <span class="contact-icon">✉️</span>
+          <a href="mailto:igorleaovieira66@gmail.com">igorleaovieira66@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-icon">💻</span>
+          <a href="https://github.com/IgorLeaoVieira" target="_blank" rel="noopener">github.com/IgorLeaoVieira</a>
+        </li>
+      </ul>
+    </div>
+    
+    <form class="contact-form" id="contactForm">
+      <div class="field">
+        <label for="name">Seu nome</label>
+        <input type="text" id="name" name="name" placeholder="Como se chama?" required />
       </div>
-    </section>
+      <div class="field">
+        <label for="email">Seu e-mail</label>
+        <input type="email" id="email" name="email" placeholder="voce@email.com" required />
+      </div>
+      <div class="field">
+        <label for="message">Mensagem</label>
+        <textarea id="message" name="message" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">
+        Enviar mensagem ✉️
+      </button>
+      <p class="form-feedback" id="formFeedback"></p>
+    </form>
+  </div>
+</section>
 
     <!-- FOOTER -->
     <footer class="footer">
